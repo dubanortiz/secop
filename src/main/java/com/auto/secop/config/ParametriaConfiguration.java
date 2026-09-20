@@ -1,13 +1,14 @@
 package com.auto.secop.config;
 
 import com.auto.secop.model.parametria.ParametriaProfile;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.PropertyNamingStrategies;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,14 +17,15 @@ import java.io.InputStream;
 public class ParametriaConfiguration {
 
     @Bean
-    ParametriaProfile parametriaProfile(SecopProperties properties, ObjectMapper objectMapper) throws IOException {
+    ParametriaProfile parametriaProfile(SecopProperties properties) throws IOException {
         Resource resource = new DefaultResourceLoader().getResource(properties.profilePath());
         if (!resource.exists()) {
             throw new IllegalStateException("Parametria file not found: " + properties.profilePath());
         }
-        ObjectMapper parametriaMapper = objectMapper.copy()
-                .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper parametriaMapper = JsonMapper.builder()
+                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .build();
         try (InputStream input = resource.getInputStream()) {
             return parametriaMapper.readValue(input, ParametriaProfile.class);
         }

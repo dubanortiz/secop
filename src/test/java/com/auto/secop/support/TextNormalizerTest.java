@@ -11,6 +11,7 @@ class TextNormalizerTest {
         String haystack = TextNormalizer.squash("AUNAR ESFUERZOS TÉCNICOS Y LOGÍSTICOS para el festival");
         assertThat(TextNormalizer.containsPhrase(haystack, TextNormalizer.squash("aunar esfuerzos"))).isTrue();
         assertThat(TextNormalizer.containsPhrase(haystack, TextNormalizer.squash("logística"))).isTrue();
+        assertThat(TextNormalizer.stem("logisticos")).isEqualTo(TextNormalizer.stem("logistica"));
         assertThat(TextNormalizer.containsPhrase(haystack, TextNormalizer.squash("cultura"))).isFalse();
     }
 

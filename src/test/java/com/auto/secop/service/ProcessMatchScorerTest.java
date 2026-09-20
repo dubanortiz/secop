@@ -63,6 +63,23 @@ class ProcessMatchScorerTest {
     }
 
     @Test
+    void unspscAloneDoesNotPushUnrelatedObjectToEighty() {
+        SecopProcess process = process(
+                "DEPARTAMENTO DE POLICIA CAQUETA",
+                "Caquetá",
+                "Florencia",
+                "Mantenimiento de motocicletas",
+                "Mínima cuantía",
+                "167900000",
+                "2026-09-22T00:00:00.000",
+                "V1.53101500"
+        );
+
+        assertThat(scorer.scoreObject(process, profile)).isEqualTo(8);
+        assertThat(scorer.score(process, profile, null)).isLessThan(80);
+    }
+
+    @Test
     void motorcycleMaintenanceInCaquetaStaysBelowEighty() {
         SecopProcess process = process(
                 "DEPARTAMENTO DE POLICIA CAQUETA - POLICIA NACIONAL DE COLOMBIA",
@@ -94,6 +111,23 @@ class ProcessMatchScorerTest {
 
         assertThat(scorer.scoreBudget(process, profile)).isZero();
         assertThat(scorer.score(process, profile, null)).isLessThan(80);
+    }
+
+    @Test
+    void logisticInflectionMatchesObjectKeyword() {
+        SecopProcess process = process(
+                "MUNICIPIO DE FLORENCIA",
+                "Caquetá",
+                "Florencia",
+                "Aunar esfuerzos técnicos y logísticos para el festival de danzas",
+                "Contratación régimen especial (con ofertas)",
+                "64000000",
+                "2026-09-25T00:00:00.000",
+                null
+        );
+
+        assertThat(scorer.scoreObject(process, profile)).isEqualTo(35);
+        assertThat(scorer.score(process, profile, null)).isGreaterThanOrEqualTo(80);
     }
 
     @Test

@@ -62,7 +62,8 @@ class ProcessSearchControllerTest {
                         "Mínima cuantía",
                         "33000000",
                         "2026-09-25T00:00:00.000",
-                        "https://community.secop.gov.co/high"
+                        "https://community.secop.gov.co/high",
+                        "V1.53101500"
                 ),
                 process(
                         "PN-MOTOS",
@@ -73,7 +74,8 @@ class ProcessSearchControllerTest {
                         "Mínima cuantía",
                         "167900000",
                         "2026-09-22T00:00:00.000",
-                        "https://community.secop.gov.co/low"
+                        "https://community.secop.gov.co/low",
+                        "V1.78181507"
                 )
         ));
 
@@ -115,7 +117,8 @@ class ProcessSearchControllerTest {
             String modality,
             String budget,
             String closing,
-            String url
+            String url,
+            String unspsc
     ) {
         return new SecopProcess(
                 "CO1.REQ." + number,
@@ -132,7 +135,7 @@ class ProcessSearchControllerTest {
                 closing,
                 "Publicado",
                 "Abierto",
-                "V1.53101500",
+                unspsc,
                 "No definido",
                 new SecopProcess.UrlProceso(url)
         );

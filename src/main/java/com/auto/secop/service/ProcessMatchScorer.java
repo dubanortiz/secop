@@ -78,10 +78,13 @@ public class ProcessMatchScorer {
                 hits.add(phrase);
             }
         }
+        int points = objectPoints(hits.size());
+        // UNSPSC in the open dataset is often inconsistent with the object
+        // (parametría notes this). Count it only as a small bonus.
         if (matchesUnspsc(process, filtros)) {
-            hits.add("__unspsc__");
+            points = Math.min(WEIGHT_OBJECT, points + (hits.isEmpty() ? 8 : 5));
         }
-        return objectPoints(hits.size());
+        return points;
     }
 
     static int objectPoints(int hits) {

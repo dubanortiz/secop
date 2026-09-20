@@ -36,7 +36,47 @@ public final class TextNormalizer {
         if (phraseNormalized.contains(" ")) {
             return haystackNormalized.contains(phraseNormalized);
         }
-        return containsWord(haystackNormalized, phraseNormalized);
+        return containsWord(haystackNormalized, phraseNormalized)
+                || containsInflectedWord(haystackNormalized, phraseNormalized);
+    }
+
+    /**
+     * Matches Spanish gender/number inflections (logística ↔ logísticos) without
+     * treating {@code cultura} as a hit inside {@code agricultura}.
+     */
+    public static boolean containsInflectedWord(String haystackNormalized, String wordNormalized) {
+        String target = stem(wordNormalized);
+        if (target.length() < 4) {
+            return false;
+        }
+        for (String token : haystackNormalized.split(" ")) {
+            if (token.isBlank()) {
+                continue;
+            }
+            if (stem(token).equals(target)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static String stem(String token) {
+        if (token == null || token.length() < 5) {
+            return token == null ? "" : token;
+        }
+        if (token.endsWith("icos") || token.endsWith("icas")) {
+            return token.substring(0, token.length() - 4);
+        }
+        if (token.endsWith("ico") || token.endsWith("ica")) {
+            return token.substring(0, token.length() - 3);
+        }
+        if (token.endsWith("os") || token.endsWith("as") || token.endsWith("es")) {
+            return token.substring(0, token.length() - 2);
+        }
+        if (token.endsWith("o") || token.endsWith("a") || token.endsWith("e")) {
+            return token.substring(0, token.length() - 1);
+        }
+        return token;
     }
 
     public static boolean containsWord(String haystackNormalized, String wordNormalized) {
