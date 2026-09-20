@@ -80,7 +80,7 @@ public final class SoqlQueryBuilder {
 
         if (!restrictToDepartment) {
             for (String entity : filtros.safeEntidadesInteres()) {
-                String folded = TextNormalizer.stripAccents(entity).toUpperCase(Locale.ROOT);
+                String folded = asciiUpperStem(entity);
                 if (!folded.isBlank()) {
                     territory.add("upper(entidad) like '%" + escape(folded) + "%'");
                 }
@@ -137,7 +137,7 @@ public final class SoqlQueryBuilder {
             if (entity == null || entity.isBlank()) {
                 continue;
             }
-            String folded = TextNormalizer.stripAccents(entity).toUpperCase(Locale.ROOT);
+            String folded = asciiUpperStem(entity);
             if (folded.isBlank()) {
                 continue;
             }
@@ -158,6 +158,11 @@ public final class SoqlQueryBuilder {
                 .map(value -> "'" + value + "'")
                 .toList();
         return field + " IN (" + String.join(",", quoted) + ")";
+    }
+
+    static String asciiUpperStem(String raw) {
+        String folded = TextNormalizer.stripAccents(raw).toUpperCase(Locale.ROOT);
+        return folded.replaceAll("[^A-Z0-9 ]+", " ").replaceAll("\\s+", " ").trim();
     }
 
     static String escape(String value) {
