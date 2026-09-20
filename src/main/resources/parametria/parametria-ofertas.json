@@ -1,0 +1,1245 @@
+{
+  "version": "2.0.1",
+  "plataforma": "SECOP II",
+  "url_base": "https://community.secop.gov.co",
+  "actualizado": "2026-09-14",
+  "alcance": "Solo lectura. Parametría desde 9 ofertas presentadas. Detalle de archivos .rar/.pdf comprimidos no abierto; se usó lo visible en SECOP II (resumen, cuestionario, documentos listados, garantías).",
+  "proveedor": {
+    "razon_social": "SACHE FUNDACION - HACIA ADELANTE",
+    "nit": null,
+    "tipo_persona": "ESAL",
+    "ciudad_domicilio": null,
+    "departamento": "Caquetá",
+    "entidad_contratante_frecuente": "Municipio de Curillo — Oficina de Contratación Curillo"
+  },
+  "filtros_busqueda": {
+    "modalidades": [
+      "Mínima cuantía",
+      "Contratación régimen especial (con ofertas)"
+    ],
+    "estados_proceso": [
+      "Publicado",
+      "Abierto"
+    ],
+    "codigos_unspsc": [
+      "90101603",
+      "90101600",
+      "53102900",
+      "53101500",
+      "80111623",
+      "78111803",
+      "84111701",
+      "60141000",
+      "43211500",
+      "80111620",
+      "80111601",
+      "80111619",
+      "85151605",
+      "90131502",
+      "93141701",
+      "93121703",
+      "93141702",
+      "93141707",
+      "93141506",
+      "60131801",
+      "82101501",
+      "82101502"
+    ],
+    "codigos_unspsc_notas": "Validar coherencia UNSPSC vs objeto (ej. 43211500 en dotación). Incluye códigos adicionales vistos en festival de danzas.",
+    "entidades_interes": [
+      "Municipio de Curillo"
+    ],
+    "entidades_excluir": [],
+    "departamentos": [
+      "Caquetá"
+    ],
+    "municipios": [
+      "Curillo",
+      "Florencia"
+    ],
+    "presupuesto_min_cop": 30000000,
+    "presupuesto_max_cop": 200000000,
+    "dias_minimos_antes_cierre": 2,
+    "palabras_clave_incluir": [
+      "dotación",
+      "uniformes",
+      "confección",
+      "suministro",
+      "logística",
+      "festival",
+      "danzas",
+      "cultura",
+      "apoyo logístico",
+      "ESAL",
+      "aunar esfuerzos",
+      "juegos intercolegiados",
+      "día de las madres",
+      "violencia de género",
+      "violencia infantil",
+      "navidad",
+      "libertad religiosa",
+      "sensibilización"
+    ],
+    "palabras_clave_excluir": []
+  },
+  "criterios_elegibilidad": {
+    "experiencia_especifica": {
+      "habilitada": true,
+      "objetos_contractuales_aceptados": [
+        "suministro y confección de dotación",
+        "uniformes deportivos",
+        "servicios logísticos para eventos",
+        "apoyo logístico municipal",
+        "eventos culturales y festivales",
+        "sensibilización / prevención social",
+        "actividades artísticas y tradiciones culturales"
+      ],
+      "evidencias_tipicas": [
+        "requisitos jurídicos conforme invitación",
+        "experiencia acreditada",
+        "oferta económica"
+      ],
+      "numero_contratos_similares_min": 2,
+      "objeto_tipico_esal_logistica": "operador logistico",
+      "fuente": "133-CNV-2026 estudio previo"
+    },
+    "capacidad_financiera": {
+      "habilitada": true,
+      "nota": "En CMC no siempre aparecen separados en cuestionario. En ESAL sí se pide capacidad financiera/organizacional.",
+      "indice_liquidez_min": 1,
+      "indice_endeudamiento_max": 0.7,
+      "fuente_umbrales": "Estudio previo Festival de Danzas 133-CNV-2026"
+    },
+    "capacidad_organizacional": {
+      "habilitada": true,
+      "personal_minimo": true,
+      "perfiles_requeridos_frecuentes": [
+        "personal mínimo (procesos ESAL)",
+        "idoneidad / reputación (procesos ESAL)"
+      ]
+    },
+    "capacidad_tecnica": {
+      "habilitada": true,
+      "requisitos_recurrentes": [
+        "requisitos jurídicos conforme invitación",
+        "experiencia",
+        "oferta económica"
+      ]
+    },
+    "juridicos": {
+      "documentos_base": [
+        "capacidad jurídica / requisitos jurídicos conforme invitación",
+        "experiencia",
+        "oferta económica",
+        "garantía de seriedad cuando aplique"
+      ]
+    },
+    "esal": {
+      "aplica": true,
+      "norma_frecuente": "Decreto 092/2017",
+      "requiere_aporte_esal": true,
+      "separar_aporte_municipio_esal": true,
+      "criterios_ponderables_tipicos": [
+        "aporte en bienes/servicios de la ESAL",
+        "factor de calidad"
+      ]
+    }
+  },
+  "estrategia_oferta": {
+    "alineacion_presupuesto": "En mínima cuantía observada, ofertar al valor del proceso. En ESAL, desglosar aporte Municipio + aporte ESAL.",
+    "garantia_seriedad": {
+      "habilitada": true,
+      "porcentaje_tipico_sobre_oferta": 10,
+      "cuando_aplica": "Varios CMC la exigen; algunos CMC y los ESAL revisados no la solicitaron."
+    },
+    "garantias_contrato_tipicas_cmc": {
+      "cumplimiento_porcentaje": 10,
+      "calidad_servicio_porcentaje": 10,
+      "calidad_bienes_porcentaje": 10,
+      "pago_salarios_porcentaje": 5,
+      "nota": "Combinación varía por proceso; revisar invitación."
+    },
+    "garantias_aceptadas": [
+      "seriedad_oferta",
+      "cumplimiento",
+      "calidad_servicio",
+      "calidad_bienes",
+      "pago_salarios"
+    ],
+    "riesgos_no_aceptar": [
+      "UNSPSC inconsistente con el objeto sin validar en pliego",
+      "cierre con menos de 2 días para armar documentos",
+      "proceso ESAL sin capacidad de aporte"
+    ]
+  },
+  "aprendizaje_de_propuestas": {
+    "fuente": "SECOP II — 10 ofertas presentadas (solo lectura)",
+    "proveedor": "SACHE FUNDACION - HACIA ADELANTE",
+    "total_ofertas_presentadas": 9,
+    "limitacion": "No se abrieron contenidos internos de .rar/.zip; requisitos finos dentro de anexos siguen pendientes si el usuario aporta PDF.",
+    "procesos_analizados": [
+      {
+        "referencia": "133-CNV-2026",
+        "alias_oferta": "DANZAS CURILLO",
+        "objeto": "Aunar esfuerzos técnicos, logísticos, administrativos y financieros para el XXVII Festival Departamental y Nacional de Danzas Folclóricas “El Curillo de Oro”.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Contratación régimen especial (con ofertas)",
+        "valor_cop": 194999400,
+        "unspsc": [
+          "90101603"
+        ],
+        "unspsc_adicionales": [
+          "80111620",
+          "80111601",
+          "80111619",
+          "85151605",
+          "90131502",
+          "93141701",
+          "93121703",
+          "93141702",
+          "93141707",
+          "93141506",
+          "60131801",
+          "82101501",
+          "82101502"
+        ],
+        "fechas": {
+          "publicacion": "2026-08-11",
+          "cierre_ofertas": "2026-08-12T18:00:00",
+          "inicio": "2026-08-14",
+          "terminacion": "2026-12-30"
+        },
+        "requisitos": [
+          "jurídicos",
+          "financieros/organizacionales",
+          "experiencia",
+          "personal mínimo",
+          "idoneidad",
+          "oferta económica",
+          "aporte ESAL",
+          "factor de calidad"
+        ],
+        "garantias": {
+          "solicitadas": false
+        },
+        "condiciones_especiales": {
+          "norma": "Decreto 092/2017",
+          "aporte_municipal_cop": 194999400,
+          "aporte_esal_registrado_cop": 0
+        },
+        "archivos_principales": [
+          "06. INVITACION ESAL.pdf",
+          "06.1. ANEXOS INVITACION ESAL.rar",
+          "06.2 FORMATOS INVITACION ESAL.rar",
+          "05. ESTUDIO PREVIO.pdf",
+          "05.1 ANALISIS DEL SECTOR.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO CONVENIO ESAL (PDF aportado por el usuario)",
+          "proceso": "133-CNV-2026",
+          "habilitantes": {
+            "juridicos_reputacion": {
+              "antecedentes_fiscales_disciplinarios_penales": true,
+              "certificaciones_reputacion_minimas": 1,
+              "calificacion_requerida": "buena",
+              "detalle_certificacion": [
+                "denominacion del programa",
+                "recursos ejecutados",
+                "zona geografica",
+                "contrato o convenio",
+                "poblacion beneficiada",
+                "epoca",
+                "calificacion",
+                "datos de contacto"
+              ]
+            },
+            "capacidad_organizacional": {
+              "camara_comercio": true,
+              "duracion_esal_minima_anios": 1,
+              "objeto_social_compatible": true,
+              "rut": true,
+              "documentos_estructura": [
+                "organigrama",
+                "esquema acciones de mejora",
+                "reglamento interno de trabajo",
+                "plan de bienestar e incentivo",
+                "protocolo PQRSD",
+                "manual estandares de conducta",
+                "plan preparacion respuesta emergencia",
+                "politica tolerancia cero explotacion abusos sexuales"
+              ]
+            },
+            "capacidad_financiera": {
+              "estados_financieros_corte": "2024-12-30",
+              "auditoria": "contador independiente o revisor fiscal",
+              "certificado_contador_debe_detallar": [
+                "gastos implementacion proyectos 2025",
+                "total gastos funcionamiento ESAL 2025",
+                "total contribuciones sector privado 2025",
+                "estados financieros año anterior o 2025"
+              ],
+              "indicadores_eficiencia_organizacion": [
+                {
+                  "nombre": "eficiencia administracion",
+                  "formula": "gastos implementacion proyectos 2025 / gastos funcionamiento 2025",
+                  "umbral": "> 1"
+                },
+                {
+                  "nombre": "eficiencia esfuerzo contribuciones privadas",
+                  "formula": "gastos funcionamiento 2025 / contribuciones sector privado 2025",
+                  "umbral": "> 1",
+                  "nota": "si contribuciones = 0 o indeterminado, CUMPLE"
+                }
+              ],
+              "indicadores_financieros": [
+                {
+                  "nombre": "indice_liquidez",
+                  "formula": "activo corriente / pasivo corriente",
+                  "umbral": ">= 1"
+                },
+                {
+                  "nombre": "indice_endeudamiento",
+                  "formula": "pasivo total / activo total",
+                  "umbral": "<= 0.70"
+                }
+              ]
+            },
+            "experiencia_proponente": {
+              "cantidad_contratos_minima": 2,
+              "objeto_relacionado": "prestacion de servicios como operador logistico",
+              "entidades": "publicas y/o privadas",
+              "formato": "FORMATO DE EXPERIENCIA DEL PROPONENTE",
+              "plurales_sumatoria_minima": ">= 50% del presupuesto establecido",
+              "experiencia_posterior_a_constitucion": true
+            },
+            "personal_minimo_habilitante": [
+              {
+                "cargo": "Coordinador logistico",
+                "formacion_formal": "Profesional en cualquier area",
+                "formacion_informal": "Diplomado en logistica",
+                "experiencia_general": "1 año desde expedicion del titulo",
+                "experiencia_especifica": "1 contrato como coordinador logistico en servicios logisticos de actividades deportivas"
+              },
+              {
+                "cargo": "Coordinador Cultural",
+                "formacion_formal": "Licenciado en educacion basica con enfasis en educacion artistica",
+                "experiencia_general": "8 años de experiencia profesional",
+                "experiencia_especifica": "al menos 2 contratos como Coordinador Cultural"
+              }
+            ],
+            "aporte_esal_minimo_cop": 27675000,
+            "aporte_esal_items": "items 20 y 21 del presupuesto (estimulos economicos festival)"
+          },
+          "ponderables_1000_puntos": {
+            "aporte_bienes_servicios": {
+              "puntos": 250,
+              "condicion": "aporte minimo $27.675.000 (items 20 y 21)"
+            },
+            "factor_calidad": {
+              "puntos": 250,
+              "condicion": "certificacion RL: ESAL sin multas ni caducidad"
+            },
+            "experiencia_equipo_trabajo": {
+              "puntos": 500,
+              "perfiles_para_puntaje": [
+                {
+                  "cargo": "Coordinador logistico",
+                  "formacion": "Profesional + diplomado logistica",
+                  "experiencia_general": "3 años desde titulo",
+                  "experiencia_especifica": "1 contrato coordinador logistico en actividades deportivas"
+                },
+                {
+                  "cargo": "Coordinador Cultural",
+                  "formacion": "Licenciado educacion basica enfasis artistica",
+                  "experiencia_general": "10 años profesional",
+                  "experiencia_especifica": "al menos 2 contratos como Coordinador Cultural"
+                }
+              ]
+            }
+          },
+          "aporte_municipio_max_cop": 167324400,
+          "nota": "Este PDF es el ESTUDIO PREVIO; la INVITACION ESAL suele repetir/formalizar estos mismos umbrales."
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "129-CMC-2026",
+        "alias_oferta": "UNIFORMES CURILLO",
+        "objeto": "Suministro de uniformes deportivos y transporte para la fase zonal de Juegos Intercolegiados.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 31276000,
+        "unspsc": [
+          "53102900"
+        ],
+        "fechas": {
+          "invitacion": "2026-08-04",
+          "cierre_ofertas": "2026-08-06T15:00:00",
+          "aceptacion": "2026-08-10T17:30:00"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "seriedad_porcentaje": 10,
+          "cumplimiento_porcentaje": 10,
+          "calidad_servicio_porcentaje": 10,
+          "calidad_bienes_porcentaje": 10,
+          "vigencia_hasta": "2027-06-30"
+        },
+        "archivos_principales": [
+          "05 INVITACION DE MINIMA.pdf",
+          "05.1 ANEXOS 1.rar",
+          "05.2 FORMATOS.rar",
+          "06 DESIGNACION COMITE EVALUADOR.pdf",
+          "04 ESTUDIO PREVIO.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Uniformes Intercolegiados",
+          "proceso": "129-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "presupuesto_oficial_cop": 31276000,
+          "habilitantes": {
+            "juridicos": [
+              "carta presentacion",
+              "existencia representacion",
+              "garantia seriedad"
+            ],
+            "experiencia_general": {
+              "cantidad_contratos_minima": 2,
+              "objeto_relacionado": "suministro o compraventa",
+              "entidades": "publicas o privadas",
+              "valor_cada_contrato_minimo": ">= 50% del presupuesto oficial expresado en SMMLV"
+            },
+            "tecnico_local": {
+              "establecimiento_comercio_o_alianza": true,
+              "ubicacion": "perimetro urbano Municipio de Curillo"
+            },
+            "capacidad_financiera_organizacional": {
+              "mencionada_como_habilitante": true,
+              "umbrales_numericos_en_documento": null,
+              "nota": "El estudio previo lista verificación financiera/organizacional Cumple/No cumple, pero no fija liquidez/endeudamiento numéricos como el ESAL."
+            }
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre del proceso",
+            "beneficiario": "MUNICIPIO DE CURILLO NIT 800.095.757-6",
+            "no_entrega": "causal de rechazo no subsanable"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          },
+          "oferta_economica": {
+            "vigencia_minima_dias": 90,
+            "moneda": "COP",
+            "no_superar_presupuesto": true
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "127-CMC-2026",
+        "alias_oferta": "DOTACION CURILLO",
+        "objeto": "Suministro y confección de dotación para funcionarios municipales, año 2026.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 33000000,
+        "unspsc": [
+          "43211500",
+          "53101500"
+        ],
+        "unspsc_alerta": "43211500 (computadores) parece inconsistente con dotación; también aparece 53101500",
+        "fechas": {
+          "invitacion": "2026-08-03",
+          "cierre_ofertas": "2026-08-05T16:30:00",
+          "aceptacion": "2026-08-06T17:30:00"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "seriedad_porcentaje": 10,
+          "cumplimiento_porcentaje": 10,
+          "calidad_bienes_porcentaje": 10,
+          "vigencia_hasta": "2027-03-06"
+        },
+        "archivos_principales": [
+          "04. INVITACION DE MINIMA (4).pdf",
+          "04.1 ANEXOS 1.rar",
+          "04.2 FORMATOS.rar",
+          "05 DESIGNACION COMITE EVALUADOR.pdf",
+          "03. ESTUDIO PREVIO.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Dotación funcionarios",
+          "proceso": "127-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "presupuesto_oficial_cop": 33000000,
+          "habilitantes": {
+            "experiencia_general": {
+              "cantidad_contratos_minima": 3,
+              "objeto_relacionado": "suministro o dotación de prendas de vestir, uniformes o elementos de dotación institucional",
+              "condicion_especial": "al menos 1 contrato debe incluir expresamente suministro de calzado",
+              "entidades": "publicas o privadas",
+              "valor_cada_contrato_minimo": ">= 50% del presupuesto oficial expresado en SMMLV"
+            },
+            "tecnico_local": {
+              "establecimiento_comercio_o_alianza": true,
+              "ubicacion": "perimetro urbano Municipio de Curillo"
+            },
+            "muestra_fisica": "muestra fisica inicial de cada prenda y calzado antes de produccion/entrega"
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre",
+            "beneficiario": "MUNICIPIO DE CURILLO NIT 800.095.757-6",
+            "no_entrega": "rechazo no subsanable"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          },
+          "oferta_economica": {
+            "debe_igualar_presupuesto_oficial": true,
+            "presupuesto_cop": 33000000
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "100-CMC-2026",
+        "alias_oferta": "CURILLO-LIBERTAD",
+        "objeto": "Apoyo logístico para actividades del Comité de Libertad Religiosa de Curillo, año 2026.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 34999400,
+        "unspsc": [
+          "80111623"
+        ],
+        "fechas": {
+          "invitacion": "2026-06-23",
+          "cierre_ofertas": "2026-06-26T15:00:00",
+          "aceptacion": "2026-07-03T17:00:00"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "seriedad_porcentaje": 10,
+          "cumplimiento_porcentaje": 10,
+          "cumplimiento_hasta": "2027-03-03",
+          "pago_salarios_porcentaje": 5,
+          "pago_salarios_hasta": "2029-09-03",
+          "calidad_servicio_porcentaje": 10,
+          "calidad_servicio_hasta": "2027-03-03"
+        },
+        "archivos_principales": [
+          "INVITACION (3).pdf",
+          "ESTUDIOS PREVIOS (11).pdf",
+          "CDP LIBERTAD RELIGIOSA20260623_17065028.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado, OCR) — Libertad Religiosa",
+          "proceso": "100-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "objeto": "Apoyo logístico para el desarrollo de actividades en el marco del cumplimiento del plan de acción del Comité de Libertad Religiosa del Municipio de Curillo",
+          "presupuesto_oficial_cop": 34999400,
+          "cdp_cop": 35000000,
+          "plazo_ejecucion": "2 meses y/o 100% obligaciones",
+          "habilitantes": {
+            "experiencia_especifica": {
+              "cantidad_contratos_minima": 3,
+              "estado": "ejecutados y liquidados",
+              "objeto_relacionado": "prestación de servicios logísticos",
+              "entidades": "públicas y/o privadas",
+              "valor": "sumatoria >= 100% del presupuesto oficial (P.O.)",
+              "no_acepta": [
+                "subcontratista",
+                "administración delegada"
+              ],
+              "extranjeros_sin_sucursal": "mínimo 4 contratos similares"
+            },
+            "personal_minimo": [
+              {
+                "rol": "Coordinador de logística",
+                "cantidad": 1,
+                "formacion_formal": "Profesional en cualquier área",
+                "formacion_no_formal": "Diplomado en logística",
+                "experiencia_general": "mínimo 5 años como profesional",
+                "experiencia_especifica": "1 contrato como coordinador de logística"
+              }
+            ]
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre",
+            "no_entrega": "rechazo no subsanable"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "pago_salarios_prestaciones": true,
+            "vigencia_cumplimiento_calidad": "plazo del contrato + 6 meses",
+            "pago_salarios_porcentaje": 5,
+            "pago_salarios_vigencia": "plazo del contrato + 3 años"
+          },
+          "seleccion": "menor precio que cumpla condiciones (mínima cuantía)"
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "98-CNVA-2026",
+        "alias_oferta": "Propuesta Curillo",
+        "objeto": "Aunar esfuerzos para participación de la embajadora cultural y grupos artísticos en el Festival del Piedemonte Amazónico.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Contratación régimen especial (con ofertas)",
+        "valor_cop": 64426500,
+        "unspsc": [
+          "78111803"
+        ],
+        "fechas": {
+          "cierre_ofertas": "2026-06-24T07:00:00",
+          "firma": "2026-06-25T14:00:00",
+          "inicio": "2026-06-25T18:00:00",
+          "terminacion": "2026-12-31"
+        },
+        "requisitos": [
+          "aportes municipio/ESAL en cuestionario"
+        ],
+        "garantias": {
+          "solicitadas": false
+        },
+        "condiciones_especiales": {
+          "esal": true,
+          "aporte_municipio_cop": 61051500,
+          "aporte_esal_cop": 3375000
+        },
+        "archivos_principales": [
+          "14.3. INVITACION ESAL.pdf",
+          "0. ANALISIS DEL SECTOR.pdf",
+          "CDP.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO CONVENIO ESAL (PDF aportado) — Embajadora Cultural",
+          "proceso": "98-CNVA-2026",
+          "modalidad": "Contratación régimen especial (con ofertas)",
+          "objeto": "Aunar esfuerzos para participación de la Embajadora Cultural y grupos artísticos en el Festival del Piedemonte Amazónico (Florencia)",
+          "valor_convenio_cop": 64426500,
+          "aporte_municipio_max_cop": 61051500,
+          "aporte_esal_minimo_cop": 3375000,
+          "aporte_esal_item": "ítem 9 — preparación embajadora / muestra artística baile Curillo fiestero",
+          "habilitantes": {
+            "capacidad_financiera": {
+              "indice_liquidez": ">= 1",
+              "indice_endeudamiento": "<= 0.70"
+            },
+            "experiencia_proponente": {
+              "cantidad_contratos_minima": 2,
+              "objeto_relacionado": "prestación de servicios como operador logístico",
+              "plurales_sumatoria_minima": ">= 50% del presupuesto establecido"
+            },
+            "personal_minimo_habilitante": [
+              {
+                "cargo": "Coordinador logístico",
+                "formacion_formal": "Tecnólogo en administración empresarial",
+                "formacion_informal": "Diplomado en logística",
+                "experiencia_general": "1 año desde el título",
+                "experiencia_especifica": "1 contrato como coordinador logístico en servicios logísticos de actividades deportivas"
+              },
+              {
+                "cargo": "Preparador de Reinas",
+                "formacion_formal": "Bachiller",
+                "experiencia_especifica": "al menos 2 contratos como preparador de reinas o bailarín"
+              }
+            ]
+          },
+          "ponderables_1000_puntos": {
+            "aporte_bienes_servicios": {
+              "puntos": 250,
+              "minimo_para_puntaje_cop": 3375000
+            },
+            "factor_calidad": {
+              "puntos": 250,
+              "condicion": "certificación RL: ESAL sin multas ni caducidad"
+            },
+            "experiencia_equipo_trabajo": {
+              "puntos": 500,
+              "perfiles_para_puntaje": [
+                {
+                  "cargo": "Coordinador logístico",
+                  "formacion": "Tecnólogo administración empresarial + diplomado logística",
+                  "experiencia_general": "3 años desde el título",
+                  "experiencia_especifica": "1 contrato coordinador logístico en actividades deportivas"
+                },
+                {
+                  "cargo": "Preparador de Reinas",
+                  "formacion": "Bachiller",
+                  "experiencia_especifica": "al menos 2 contratos como preparador de reinas o bailarín"
+                }
+              ]
+            }
+          },
+          "comparacion_con_133_CNV": {
+            "igual": [
+              "liquidez >=1",
+              "endeudamiento <=0.70",
+              "2 contratos operador logístico",
+              "ponderables 250/250/500"
+            ],
+            "diferente": {
+              "aporte_esal_minimo": "133: $27.675.000 vs 98: $3.375.000",
+              "personal": "133: coordinador logístico profesional + coordinador cultural; 98: tecnólogo logístico + preparador de reinas"
+            }
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "92-CMC-2026",
+        "alias_oferta": "LOGISTICA CURILLO",
+        "objeto": "Servicios logísticos para realizar los Juegos Intercolegiados fase municipal 2026.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 49025000,
+        "unspsc": [
+          "90101600"
+        ],
+        "fechas": {
+          "invitacion": "2026-05-26",
+          "cierre_ofertas": "2026-05-28T18:00:00",
+          "aceptacion": "2026-06-01T16:00:00"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "seriedad": false,
+          "cumplimiento_porcentaje": 10,
+          "calidad_servicio_porcentaje": 10,
+          "calidad_bienes_porcentaje": 10,
+          "vigencia_hasta": "2026-12-30"
+        },
+        "archivos_principales": [
+          "05. INVITACION DE MINIMA (3).pdf",
+          "05.1 ANEXOS 1.rar",
+          "05.2 FORMATOS.rar",
+          "06 DESIGNACION COMITE EVALUADOR.pdf",
+          "04. ESTUDIO PREVIO.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Juegos Intercolegiados fase municipal",
+          "proceso": "92-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "objeto": "Prestar servicios de apoyo logísticos para la realización de los Juegos Intercolegiados fase municipal 2026",
+          "presupuesto_oficial_cop": 49025000,
+          "habilitantes": {
+            "experiencia_especifica": {
+              "cantidad_contratos_minima": 3,
+              "objeto_relacionado": "prestación de servicios de apoyo logísticos",
+              "entidades": "públicas o privadas",
+              "valor_minimo_explicito": null,
+              "nota": "El estudio previo no fija umbral SMMLV/% del P.O. por contrato; solo cantidad y objeto."
+            },
+            "personal_minimo": [
+              {
+                "rol": "Coordinador deportivo",
+                "cantidad": 1,
+                "formacion_formal": "Profesional en licenciatura en educación física, deportes y recreación",
+                "experiencia_general": "mínimo 1 año desde el título profesional",
+                "experiencia_especifica": "1 contrato como instructor deportivo"
+              }
+            ],
+            "subcontratos": "no se aceptan"
+          },
+          "garantia_seriedad": {
+            "solicitada_en_estudio_previo": false,
+            "nota": "Coincide con SECOP: no seriedad; solo garantías de contrato"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          },
+          "oferta_economica": {
+            "vigencia_minima_dias": 90
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "85-CMC-2026",
+        "alias_oferta": "DIA DE LAS MADRES - CURILLO",
+        "objeto": "Servicios logísticos para sensibilización y prevención de violencia basada en género y actividades del Día de la Madre.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 49000000,
+        "unspsc": [
+          "90101603"
+        ],
+        "fechas": {
+          "invitacion": "2026-05-13",
+          "cierre_ofertas": "2026-05-15T18:30:00",
+          "aceptacion": "2026-05-20T14:32:00"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "solicitadas": true,
+          "seriedad_porcentaje": 10,
+          "cumplimiento_porcentaje": 10,
+          "calidad_servicio_porcentaje": 10,
+          "calidad_bienes_porcentaje": 10,
+          "fuente": "estudio previo PDF"
+        },
+        "archivos_principales": [
+          "05. INVITACION DE MINIMA.pdf",
+          "05.1 ANEXOS 1.rar",
+          "05.2 FORMATOS.rar",
+          "06 DESIGNACION COMITE EVALUADOR.pdf",
+          "04. ESTUDIO PREVIO.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Día de las Madres",
+          "proceso": "85-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "objeto": "Prestar servicios logísticos para sensibilización y prevención de violencia basada en género... en el marco de la celebración del Día de la Madre Curillence",
+          "presupuesto_oficial_cop": 49000000,
+          "plazo_ejecucion": "15 días calendario y/o 100% obligaciones",
+          "habilitantes": {
+            "experiencia_especifica": {
+              "cantidad_contratos_minima": 2,
+              "objeto_relacionado": "apoyo logístico relacionado con el proceso contractual",
+              "entidades": "públicas o privadas",
+              "valor_cada_contrato": ">= 100% del presupuesto oficial expresado en SMMLV",
+              "plurales": "un integrante >=60% experiencia; demás >=5%; uno puede no acreditar si participación <=5%"
+            },
+            "personal_minimo": [
+              {
+                "rol": "Coordinador de logística",
+                "cantidad": 1,
+                "formacion_formal": "Profesional en áreas de la administración",
+                "formacion_no_formal": "Diplomado en Políticas Públicas",
+                "experiencia_general": "mínimo 10 años desde el título profesional",
+                "experiencia_especifica": "1 contrato como coordinador"
+              }
+            ],
+            "subcontratos": "no se aceptan"
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre",
+            "no_entrega": "rechazo no subsanable",
+            "nota_secop_previa": "En SECOP el resumen de oferta no mostraba garantía; el estudio previo SÍ la exige"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          },
+          "seleccion": "menor precio que cumpla condiciones"
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "81-CMC-2026",
+        "alias_oferta": "CURILLO-DIA DEL NIÑO",
+        "objeto": "Sensibilización y prevención de violencia infantil, abuso sexual y erradicación del trabajo infantil.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 48998867,
+        "unspsc": [
+          "84111701"
+        ],
+        "fechas": {
+          "invitacion": "2026-04-15",
+          "cierre_ofertas": "2026-04-17T18:00:00",
+          "aceptacion": "2026-04-21T12:00:00",
+          "validez_oferta_dias": 90
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "solicitadas": true,
+          "seriedad": false,
+          "cumplimiento_porcentaje": 10,
+          "calidad_servicio_porcentaje": 10,
+          "fuente": "estudio previo PDF"
+        },
+        "archivos_principales": [
+          "05. INVITACION DE MINIMA (3).pdf",
+          "05.1 ANEXOS 1.rar",
+          "05.2 FORMATOS.rar",
+          "06 DESIGNACION COMITE EVALUADOR.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Violencia infantil / Día de la niñez",
+          "proceso": "81-CMC-2026",
+          "modalidad": "Mínima cuantía",
+          "objeto": "Prestación de servicios logísticos para sensibilización y prevención de violencia infantil, abuso sexual y erradicación del trabajo infantil en el marco del Día de la Niñez Curillence",
+          "presupuesto_oficial_cop": 48998867,
+          "plazo_ejecucion": "3 días calendario y/o 100% obligaciones",
+          "habilitantes": {
+            "experiencia_especifica": {
+              "cantidad_contratos_minima": 2,
+              "objeto_relacionado": "apoyo logístico relacionado con el proceso",
+              "entidades": "públicas o privadas",
+              "valor_minimo_explicito": null
+            },
+            "personal_minimo": [
+              {
+                "rol": "Coordinador de logística",
+                "cantidad": 1,
+                "formacion_formal": "Profesional en áreas de la administración",
+                "formacion_no_formal": "Diplomado en Políticas Públicas / Políticas públicas para la juventud",
+                "experiencia_general": "mínimo 10 años desde el título profesional",
+                "experiencia_especifica": "1 contrato como coordinador"
+              }
+            ],
+            "subcontratos": "no se aceptan"
+          },
+          "garantia_seriedad": {
+            "solicitada_en_estudio_previo": false
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          },
+          "oferta_economica": {
+            "vigencia_minima_dias": 90
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "175-CMC-2025",
+        "alias_oferta": "NAVIDAD EN FAMILIA",
+        "objeto": "Servicios logísticos para actividades de tradiciones culturales y artísticas del proyecto “Juntos en Familia”, vigencia 2025.",
+        "entidad": "Municipio de Curillo — Oficina de Contratación Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 39000000,
+        "unspsc": [
+          "60141000"
+        ],
+        "fechas": {
+          "invitacion": "2025-12-03",
+          "cierre_ofertas": "2025-12-05T16:00:00",
+          "aceptacion": "2025-12-09T19:00:00",
+          "terminacion": "2025-12-30"
+        },
+        "requisitos": [
+          "jurídicos conforme invitación",
+          "experiencia",
+          "oferta económica"
+        ],
+        "garantias": {
+          "seriedad_porcentaje": 10,
+          "cumplimiento_porcentaje": 10,
+          "cumplimiento_hasta": "2026-06-30",
+          "pago_salarios_porcentaje": 5,
+          "pago_salarios_hasta": "2028-12-30",
+          "calidad_servicio_porcentaje": 10,
+          "calidad_bienes_porcentaje": 10,
+          "calidad_hasta": "2026-06-30"
+        },
+        "archivos_principales": [
+          "INVITACION DE MINIMA.pdf",
+          "ESTUDIO PREVIO LOGISTICA.pdf",
+          "01.1 MGA 202500000002446.pdf",
+          "02. SOLICITUD Y CDP 488.pdf"
+        ],
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Navidad / Juntos en Familia",
+          "proceso": "175-CMC-2025",
+          "modalidad": "Mínima cuantía",
+          "objeto": "Prestar servicios logísticos para actividades de tradiciones culturales y artísticas del proyecto “Juntos en Familia” vigencia 2025",
+          "presupuesto_oficial_cop": 39000000,
+          "habilitantes": {
+            "experiencia_especifica": {
+              "cantidad_contratos_minima": 1,
+              "estado": "ejecutados y liquidados",
+              "objeto_relacionado": "prestación de servicios logísticos"
+            },
+            "personal_minimo": [
+              {
+                "rol": "Coordinador logístico",
+                "formacion_formal": "Tecnólogo en administración empresarial",
+                "formacion_informal": "Diplomado en logística",
+                "experiencia_general": "1 año desde el título",
+                "experiencia_especifica": "mínimo 3 contratos de servicios logísticos"
+              }
+            ]
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre",
+            "no_entrega": "rechazo no subsanable"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_servicio_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "pago_salarios_porcentaje": 5,
+            "pago_salarios_vigencia": "plazo + 3 años",
+            "vigencia_cumplimiento_calidad": "plazo + 6 meses"
+          }
+        },
+        "detalle_pliego": "completo_desde_estudio_previo_pdf"
+      },
+      {
+        "referencia": "DOTACION-2025-CURILLO",
+        "id_secop": null,
+        "alias_oferta": "DOTACION FUNCIONARIOS 2025 (PDF adicional, no estaba en las 10 ofertas de SECOP)",
+        "objeto": "Suministro y confección de dotación para funcionarios de la Administración Municipal de Curillo, Caquetá, año 2025.",
+        "entidad": "Municipio de Curillo",
+        "modalidad": "Mínima cuantía",
+        "valor_cop": 25000000,
+        "detalle_pliego": "completo_desde_estudio_previo_pdf",
+        "detalle_exacto_estudio_previo": {
+          "fuente_documento": "ESTUDIO PREVIO (PDF aportado) — Dotación 2025",
+          "fecha_documento": "2025-11-11",
+          "presupuesto_oficial_cop": 25000000,
+          "habilitantes": {
+            "experiencia_general": {
+              "cantidad_contratos_minima": 3,
+              "objeto_relacionado": "suministro o dotación de prendas de vestir, uniformes o elementos de dotación institucional",
+              "condicion_especial": "al menos 1 contrato debe incluir expresamente suministro de calzado",
+              "valor_cada_contrato_minimo": ">= 50% del presupuesto oficial expresado en SMMLV"
+            }
+          },
+          "garantia_seriedad": {
+            "porcentaje_minimo_sobre_oferta": 10,
+            "vigencia": "3 meses desde cierre",
+            "no_entrega": "rechazo no subsanable"
+          },
+          "garantias_contrato": {
+            "cumplimiento_porcentaje": 10,
+            "calidad_bienes_porcentaje": 10,
+            "vigencia": "plazo del contrato + 6 meses"
+          }
+        }
+      }
+    ],
+    "patrones_detectados": {
+      "modalidades_mas_frecuentes": [
+        "Mínima cuantía",
+        "Contratación régimen especial (con ofertas)"
+      ],
+      "conteo_modalidades": {
+        "Mínima cuantía": 8,
+        "Régimen especial ESAL": 2
+      },
+      "entidad_dominante": "Municipio de Curillo",
+      "territorio": "Curillo, Caquetá",
+      "rango_valores_cop": {
+        "min": 31276000,
+        "max": 194999400
+      },
+      "perfil_negocio": [
+        "servicios logísticos para eventos municipales",
+        "suministros/confección (dotación, uniformes)",
+        "cultura / festivales / ESAL con aportes",
+        "sensibilización social"
+      ],
+      "requisitos_recurrentes_cmc": [
+        "jurídicos conforme invitación",
+        "experiencia",
+        "oferta económica"
+      ],
+      "garantias": {
+        "seriedad_10_porciento_en": [
+          "129-CMC-2026",
+          "127-CMC-2026",
+          "100-CMC-2026",
+          "175-CMC-2025"
+        ],
+        "sin_garantias_en": [
+          "133-CNV-2026",
+          "98-CNVA-2026",
+          "85-CMC-2026",
+          "81-CMC-2026"
+        ],
+        "solo_contrato_sin_seriedad_en": [
+          "92-CMC-2026"
+        ]
+      },
+      "criterios_seleccion": {
+        "minima_cuantia": "Oferta económica + requisitos jurídicos + experiencia; sin ponderación detallada en vista pública",
+        "esal": "Aportes ESAL y/o factor de calidad explícitos"
+      }
+    },
+    "procesos_adicionales_pdf": [
+      "DOTACION-2025-CURILLO"
+    ],
+    "cobertura_detalle_exacto": {
+      "con_estudio_previo_pdf": 9,
+      "completas": [
+        "133-CNV-2026",
+        "129-CMC-2026",
+        "127-CMC-2026",
+        "100-CMC-2026",
+        "98-CNVA-2026",
+        "92-CMC-2026",
+        "85-CMC-2026",
+        "81-CMC-2026",
+        "175-CMC-2025"
+      ],
+      "adicionales_pdf": [
+        "DOTACION-2025-CURILLO"
+      ],
+      "ofertas_secop": 9
+    }
+  },
+  "reglas_decision": [
+    {
+      "id": "entidad_territorio",
+      "descripcion": "Priorizar Municipio de Curillo / Caquetá o procesos logístico-culturales afines",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "evaluar_manual"
+    },
+    {
+      "id": "modalidad_conocida",
+      "descripcion": "Mínima cuantía o régimen especial con ofertas (ESAL)",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "evaluar_manual"
+    },
+    {
+      "id": "presupuesto_en_rango",
+      "descripcion": "Valor entre 30M y 200M COP",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "descartar"
+    },
+    {
+      "id": "unspsc_coherente",
+      "descripcion": "UNSPSC coherente con el objeto",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "evaluar_manual"
+    },
+    {
+      "id": "tiempo_suficiente",
+      "descripcion": "Al menos 2 días antes del cierre",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "descartar"
+    },
+    {
+      "id": "esal_con_aporte",
+      "descripcion": "Si es ESAL/Decreto 092, verificar capacidad de aporte y documentos",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "descartar"
+    },
+    {
+      "id": "garantia_seriedad",
+      "descripcion": "Si exige seriedad, poder constituir ~10% del valor a ofertar",
+      "accion_si_cumple": "continuar",
+      "accion_si_no": "descartar"
+    }
+  ],
+  "pendientes": [
+    "Completar NIT y datos de contacto del proveedor",
+    "Definir margen mínimo / descuento máximo antes de aplicar a nuevas ofertas",
+    "Opcional: abrir anexos .rar / formatos si se necesitan checklists documentales al 100%"
+  ],
+  "patron_minima_cuantia": {
+    "fuente": "129-CMC-2026 estudio previo",
+    "experiencia_tipica": {
+      "contratos_minimos": 2,
+      "objeto": "suministro o compraventa (o afín al objeto)",
+      "valor_cada_uno": ">= 50% presupuesto oficial en SMMLV"
+    },
+    "seriedad_oferta": {
+      "porcentaje": 10,
+      "vigencia_meses": 3
+    },
+    "garantias_contrato_tipicas": {
+      "cumplimiento": "10%",
+      "calidad_bienes": "10%",
+      "calidad_servicio": "10%",
+      "vigencia": "plazo + 6 meses"
+    },
+    "nota_financiera": "En este CMC no aparecen umbrales de liquidez/endeudamiento; verificar invitacion de cada proceso.",
+    "variacion_experiencia_observada": {
+      "129-CMC-2026_uniformes": "2 contratos suministro/compraventa, cada uno >=50% SMMLV",
+      "127-CMC-2026_dotacion": "3 contratos prendas/uniformes/dotacion; al menos 1 con calzado; cada uno >=50% SMMLV",
+      "100-CMC-2026_logistica": "3 contratos servicios logísticos liquidados; sumatoria >= 100% P.O.; personal: coordinador logística (profesional + diplomado; 5 años + 1 contrato)",
+      "85-CMC-2026_logistica_madres": "2 contratos apoyo logístico; CADA UNO >=100% P.O. en SMMLV (más estricto que 100-CMC)",
+      "92-CMC-2026_juegos": "3 contratos apoyo logístico; sin umbral SMMLV explícito; personal: coordinador deportivo (1 año + instructor)",
+      "DOTACION-2025": "Igual que 127-CMC-2026: 3 contratos prendas/dotación + 1 con calzado; cada uno >=50% SMMLV. Confirma patrón de dotación año a año.",
+      "175-CMC-2025_navidad": "1 contrato servicios logísticos liquidado; personal: coordinador tecnólogo (1 año + 3 contratos logísticos); seriedad 10%",
+      "81-CMC-2026_dia_nino": "2 contratos apoyo logístico; sin umbral SMMLV; sin seriedad; coordinador logística 10 años (igual que 85-CMC madres)"
+    },
+    "constantes_cmc_curillo": {
+      "seriedad": "10% oferta, 3 meses",
+      "sede_local": "establecimiento o alianza en Curillo",
+      "cumplimiento_calidad": "10% + plazo 6 meses (segun proceso)"
+    },
+    "perfiles_cmc": {
+      "suministro_bienes": {
+        "ejemplos": [
+          "129-CMC-2026",
+          "127-CMC-2026"
+        ],
+        "experiencia": "2–3 contratos suministro/dotación; cada uno >=50% P.O. en SMMLV",
+        "sede_local_curillo": true
+      },
+      "servicios_logisticos": {
+        "ejemplos": [
+          "100-CMC-2026"
+        ],
+        "experiencia": "3 contratos logísticos; sumatoria >=100% P.O.",
+        "personal_minimo": "coordinador de logística"
+      }
+    },
+    "servicios_logisticos_variantes": {
+      "100-CMC-2026": "3 contratos; sumatoria >=100% P.O.; personal coordinador (5 años)",
+      "85-CMC-2026": "2 contratos; cada uno >=100% P.O. en SMMLV"
+    },
+    "seriedad_oferta_cuando_aplica": {
+      "con_seriedad_10pct": [
+        "129",
+        "127",
+        "100",
+        "85",
+        "175?"
+      ],
+      "sin_seriedad_en_estudio": [
+        "92-CMC-2026",
+        "76?"
+      ]
+    }
+  },
+  "patron_esal": {
+    "fuente": [
+      "133-CNV-2026",
+      "98-CNVA-2026"
+    ],
+    "constantes": {
+      "liquidez_min": 1,
+      "endeudamiento_max": 0.7,
+      "experiencia_proponente": "2 contratos operador logístico",
+      "ponderables": "aporte 250 + calidad 250 + equipo 500 = 1000",
+      "norma": "Decreto 092/2017"
+    },
+    "aporte_esal_minimo_varia_por_proceso": true
+  }
+}
