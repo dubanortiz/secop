@@ -57,6 +57,19 @@ class SoqlQueryBuilderTest {
     }
 
     @Test
+    void likePatternsInDefaultSearchAreAscii() {
+        String where = SoqlQueryBuilder.buildWhere(profile(), null, NATIONAL);
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("like '%([^']+)%'").matcher(where);
+        while (matcher.find()) {
+            String stem = matcher.group(1);
+            assertThat(stem.chars().allMatch(c -> c < 128))
+                    .as("LIKE stem should be ASCII: %s", stem)
+                    .isTrue();
+            assertThat(stem).doesNotContain("Ã");
+        }
+    }
+
+    @Test
     void nationalLikeStemsAreAsciiFolded() {
         List<String> stems = SoqlQueryBuilder.nationalLikeStems(List.of("Policía", "Ejército", "Fuerza Aérea"));
         assertThat(stems).contains("POLICIA", "POLIC", "EJERCITO", "EJERCIT", "FUERZA AEREA", "FUERZA AER");
