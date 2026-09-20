@@ -32,7 +32,7 @@ Optional query parameters:
 | Param | Default | Description |
 | --- | --- | --- |
 | `minMatch` | `80` | Minimum score (0–100). Only processes at or above this value are returned. |
-| `departamento` | parametría `filtros_busqueda.departamentos` (Caquetá) | Territorial filter sent to datos.gov.co |
+| `departamento` | _(omitted)_ | When set (e.g. `Caquetá`), **only that department** is searched. When omitted, Caquetá **or** national entities of interest. |
 | `limit` | `20` | Max number of scored matches to return (1–200) |
 
 Example:
@@ -65,7 +65,9 @@ The API first pulls **open** processes from datos.gov.co:
 - `estado_de_apertura_del_proceso` = `Abierto`
 - `estado_del_procedimiento` in parametría `estados_proceso` (`Publicado`, `Abierto`)
 - `modalidad_de_contratacion` in parametría `modalidades` (Mínima cuantía or Contratación régimen especial (con ofertas))
-- Territory: requested/profile department **or** `entidades_interes` **or** national entities (`Policía`, `Ejército`, `ICBF`, `Armada`, `Fuerza Aeroespacial`, `Ministerio de Defensa`, `INPEC`, `SENA`)
+- Territory:
+  - **`departamento` present** (e.g. `Caquetá`): only `departamento_entidad` matching that name, including accent variants (`Caquetá`, `Caqueta`, `CAQUETA`). National-entity keywords are **not** OR-ed, so SENA Antioquia/Santander cannot appear. In-department national bodies (Policía Caquetá, ICBF Regional Caquetá) still appear because their department is Caquetá. Parametría municipalities (Curillo, Florencia) are used for scoring, not as a nationwide city OR — Florencia also exists in Cauca. The dataset has no DIVIPOLA column.
+  - **`departamento` omitted**: profile department (Caquetá, all municipalities) **or** `entidades_interes` **or** national entities (`Policía`, `Ejército`, `ICBF`, `Armada`, `Fuerza Aeroespacial`/`Aérea`, `Ministerio de Defensa`, `INPEC`, `SENA`) anywhere. LIKE stems are ASCII-folded (`POLIC` matches `POLICIA` and `POLICÍA`).
 
 Each row is then scored against the parametría profile (not a pliego parse). Suggested weights, aligned with `reglas_decision`:
 

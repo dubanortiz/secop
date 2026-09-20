@@ -9,7 +9,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
@@ -31,15 +34,18 @@ public class DatosGovSecopClient {
     public List<SecopProcess> findOpenProcesses(ParametriaProfile profile, String departamento) {
         String where = SoqlQueryBuilder.buildWhere(profile, departamento, properties.nationalEntities());
         int limit = properties.fetchLimit();
+        URI uri = UriComponentsBuilder.fromUriString(properties.datosGovBaseUrl())
+                .queryParam("$select", SoqlQueryBuilder.SELECT_FIELDS)
+                .queryParam("$where", where)
+                .queryParam("$order", "fecha_de_recepcion_de DESC")
+                .queryParam("$limit", limit)
+                .encode(StandardCharsets.UTF_8)
+                .build()
+                .toUri();
         log.info("Querying datos.gov.co SECOP II with $limit={} $where={}", limit, where);
         try {
             List<SecopProcess> processes = restClient.get()
-                    .uri(uriBuilder -> uriBuilder
-                            .queryParam("$select", SoqlQueryBuilder.SELECT_FIELDS)
-                            .queryParam("$where", where)
-                            .queryParam("$order", "fecha_de_recepcion_de DESC")
-                            .queryParam("$limit", limit)
-                            .build())
+                    .uri(uri)
                     .retrieve()
                     .body(PROCESS_LIST);
             return processes == null ? List.of() : processes;

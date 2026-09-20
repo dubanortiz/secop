@@ -16,6 +16,13 @@ class TextNormalizerTest {
     }
 
     @Test
+    void stripAccentsKeepsCase() {
+        assertThat(TextNormalizer.stripAccents("Caquetá")).isEqualTo("Caqueta");
+        assertThat(TextNormalizer.stripAccents("Policía")).isEqualTo("Policia");
+        assertThat(TextNormalizer.normalize("CAQUETÁ")).isEqualTo("caqueta");
+    }
+
+    @Test
     void doesNotMatchCulturaInsideAgricultura() {
         String haystack = TextNormalizer.squash("servicios de agricultura familiar");
         assertThat(TextNormalizer.containsPhrase(haystack, TextNormalizer.squash("cultura"))).isFalse();

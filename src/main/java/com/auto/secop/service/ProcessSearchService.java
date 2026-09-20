@@ -42,6 +42,7 @@ public class ProcessSearchService {
 
         List<SecopProcess> raw = client.findOpenProcesses(profile, departamento);
         List<ProcessMatchResponse> matches = raw.stream()
+                .filter(process -> matchesRequestedDepartment(process, departamento))
                 .filter(process -> !isExcludedEntity(process))
                 .map(process -> toMatch(process, threshold, departamento))
                 .filter(match -> match != null)
@@ -68,6 +69,19 @@ public class ProcessSearchService {
                 process.parsedClosingDate().map(date -> date.toString()).orElse(null),
                 process.url()
         );
+    }
+
+    /**
+     * Defense in depth: a {@code departamento} query param never returns other departments,
+     * even if the SODA clause were too broad.
+     */
+    static boolean matchesRequestedDepartment(SecopProcess process, String departamento) {
+        if (departamento == null || departamento.isBlank()) {
+            return true;
+        }
+        String expected = TextNormalizer.normalize(departamento);
+        String actual = TextNormalizer.normalize(process.departamentoEntidad());
+        return !expected.isBlank() && actual.contains(expected);
     }
 
     private boolean isExcludedEntity(SecopProcess process) {

@@ -20,6 +20,7 @@ import java.time.ZoneId;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -89,6 +90,69 @@ class ProcessSearchControllerTest {
                 .andExpect(jsonPath("$[0].budget").value(33000000))
                 .andExpect(jsonPath("$[0].closingDate").value("2026-09-25"))
                 .andExpect(jsonPath("$[0].url").value("https://community.secop.gov.co/high"));
+    }
+
+    @Test
+    void searchWithDepartamentoDoesNotReturnOtherDepartments() throws Exception {
+        given(client.findOpenProcesses(any(), eq("Caquetá"))).willReturn(List.of(
+                process(
+                        "129-CMC-2026",
+                        "MUNICIPIO DE CURILLO",
+                        "Caquetá",
+                        "Curillo",
+                        "Suministro y confección de dotación y uniformes",
+                        "Mínima cuantía",
+                        "33000000",
+                        "2026-09-25T00:00:00.000",
+                        "https://community.secop.gov.co/high",
+                        "V1.53101500"
+                ),
+                process(
+                        "MC-ANT-CFDCM-088-2026",
+                        "SENA REGIONAL ANTIOQUIA",
+                        "Antioquia",
+                        "Itagüí",
+                        "Suministro y confección de dotación institucional",
+                        "Mínima cuantía",
+                        "155398000",
+                        "2026-09-22T00:00:00.000",
+                        "https://community.secop.gov.co/sena",
+                        "V1.25172500"
+                )
+        ));
+
+        mockMvc.perform(get("/api/v1/processes/search")
+                        .param("minMatch", "80")
+                        .param("departamento", "Caquetá")
+                        .param("limit", "10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].processNumber").value("129-CMC-2026"))
+                .andExpect(jsonPath("$[0].entity").value("MUNICIPIO DE CURILLO"));
+    }
+
+    @Test
+    void searchWithoutDepartamentoCanReturnNationalSena() throws Exception {
+        given(client.findOpenProcesses(any(), isNull())).willReturn(List.of(
+                process(
+                        "MC-ANT-CFDCM-088-2026",
+                        "SENA REGIONAL ANTIOQUIA",
+                        "Antioquia",
+                        "Itagüí",
+                        "Suministro y confección de dotación institucional",
+                        "Mínima cuantía",
+                        "155398000",
+                        "2026-09-22T00:00:00.000",
+                        "https://community.secop.gov.co/sena",
+                        "V1.25172500"
+                )
+        ));
+
+        mockMvc.perform(get("/api/v1/processes/search"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].processNumber").value("MC-ANT-CFDCM-088-2026"))
+                .andExpect(jsonPath("$[0].matchPercent").value(org.hamcrest.Matchers.greaterThanOrEqualTo(80)));
     }
 
     @Test

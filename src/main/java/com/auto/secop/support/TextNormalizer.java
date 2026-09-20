@@ -19,9 +19,16 @@ public final class TextNormalizer {
         if (raw == null || raw.isBlank()) {
             return "";
         }
-        String decomposed = Normalizer.normalize(raw, Normalizer.Form.NFD);
-        String withoutMarks = COMBINING_MARKS.matcher(decomposed).replaceAll("");
-        return withoutMarks.toLowerCase(Locale.ROOT).trim();
+        return stripAccents(raw).toLowerCase(Locale.ROOT).trim();
+    }
+
+    /** Removes combining marks but keeps letter case ({@code Caquetá} → {@code Caqueta}). */
+    public static String stripAccents(String raw) {
+        if (raw == null || raw.isBlank()) {
+            return "";
+        }
+        String decomposed = Normalizer.normalize(raw.trim(), Normalizer.Form.NFD);
+        return COMBINING_MARKS.matcher(decomposed).replaceAll("");
     }
 
     public static String squash(String raw) {

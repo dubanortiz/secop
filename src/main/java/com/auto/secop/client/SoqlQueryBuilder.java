@@ -11,8 +11,19 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Builds a SoQL $where clause for the public datos.gov.co SECOP II dataset (p6dx-8zbt).
- * Read-only filters from parametría {@code filtros_busqueda} plus national-entity intent.
+ * Builds a SoQL {@code $where} clause for the public datos.gov.co SECOP II dataset (p6dx-8zbt).
+ *
+ * <p>When {@code departamento} is set, territory is <strong>only</strong> that department
+ * (accent variants). National-entity keywords are not OR-ed, so SENA Antioquia cannot
+ * leak into a Caquetá search. In-department national bodies (Policía Caquetá, ICBF Regional
+ * Caquetá) still match because {@code departamento_entidad} is Caquetá.
+ *
+ * <p>When {@code departamento} is omitted, territory is profile departments (Caquetá)
+ * <strong>or</strong> {@code entidades_interes} <strong>or</strong> national-entity stems.
+ *
+ * <p>LIKE stems are ASCII-folded. SODA {@code upper()} does not strip accents, so
+ * {@code POLIC} matches both {@code POLICIA} and {@code POLICÍA} without putting
+ * combining marks in the query string.
  */
 public final class SoqlQueryBuilder {
 
@@ -62,21 +73,21 @@ public final class SoqlQueryBuilder {
             clauses.add(inClause("modalidad_de_contratacion", modalities));
         }
 
-        List<String> territory = new ArrayList<>();
-        List<String> departments = new ArrayList<>();
-        if (departamentoOverride != null && !departamentoOverride.isBlank()) {
-            departments.add(departamentoOverride.trim());
-        } else {
-            departments.addAll(filtros.safeDepartamentos());
-        }
-        for (String department : departments) {
-            territory.add("departamento_entidad='" + escape(department) + "'");
-        }
-        for (String entity : filtros.safeEntidadesInteres()) {
-            territory.add("upper(entidad) like '%" + escape(entity).toUpperCase(Locale.ROOT) + "%'");
-        }
-        for (String stem : nationalLikeStems(nationalEntities)) {
-            territory.add("upper(entidad) like '%" + escape(stem) + "%'");
+        boolean restrictToDepartment = departamentoOverride != null && !departamentoOverride.isBlank();
+        List<String> territory = new ArrayList<>(departmentClauses(
+                restrictToDepartment ? List.of(departamentoOverride.trim()) : filtros.safeDepartamentos()
+        ));
+
+        if (!restrictToDepartment) {
+            for (String entity : filtros.safeEntidadesInteres()) {
+                String folded = TextNormalizer.stripAccents(entity).toUpperCase(Locale.ROOT);
+                if (!folded.isBlank()) {
+                    territory.add("upper(entidad) like '%" + escape(folded) + "%'");
+                }
+            }
+            for (String stem : nationalLikeStems(nationalEntities)) {
+                territory.add("upper(entidad) like '%" + escape(stem) + "%'");
+            }
         }
         if (!territory.isEmpty()) {
             clauses.add("(" + String.join(" OR ", territory) + ")");
@@ -84,6 +95,39 @@ public final class SoqlQueryBuilder {
         return String.join(" AND ", clauses);
     }
 
+    static List<String> departmentClauses(List<String> departments) {
+        Set<String> clauses = new LinkedHashSet<>();
+        for (String department : departments) {
+            if (department == null || department.isBlank()) {
+                continue;
+            }
+            for (String variant : departmentVariants(department)) {
+                clauses.add("departamento_entidad='" + escape(variant) + "'");
+                clauses.add("upper(departamento_entidad)='" + escape(variant.toUpperCase(Locale.ROOT)) + "'");
+            }
+        }
+        return List.copyOf(clauses);
+    }
+
+    /**
+     * Live dataset stores Caquetá as {@code Caquetá} only; also accept {@code Caqueta}/{@code CAQUETA}.
+     * No DIVIPOLA column exists on p6dx-8zbt.
+     */
+    static List<String> departmentVariants(String department) {
+        Set<String> variants = new LinkedHashSet<>();
+        String trimmed = department.trim();
+        variants.add(trimmed);
+        String folded = TextNormalizer.stripAccents(trimmed);
+        if (!folded.isBlank()) {
+            variants.add(folded);
+        }
+        return List.copyOf(variants);
+    }
+
+    /**
+     * ASCII-only LIKE stems. Accented source names (Policía, Ejército) are folded so the
+     * query string never contains mojibake or combining marks.
+     */
     static List<String> nationalLikeStems(List<String> nationalEntities) {
         if (nationalEntities == null) {
             return List.of();
@@ -93,11 +137,17 @@ public final class SoqlQueryBuilder {
             if (entity == null || entity.isBlank()) {
                 continue;
             }
-            String raw = entity.trim().toUpperCase(Locale.ROOT);
-            stems.add(raw);
-            String folded = TextNormalizer.normalize(entity).toUpperCase(Locale.ROOT);
-            if (!folded.isBlank()) {
-                stems.add(folded);
+            String folded = TextNormalizer.stripAccents(entity).toUpperCase(Locale.ROOT);
+            if (folded.isBlank()) {
+                continue;
+            }
+            stems.add(folded);
+            if (folded.startsWith("POLIC")) {
+                stems.add("POLIC");
+            } else if (folded.startsWith("EJERCIT")) {
+                stems.add("EJERCIT");
+            } else if (folded.startsWith("FUERZA AER")) {
+                stems.add("FUERZA AER");
             }
         }
         return List.copyOf(stems);
