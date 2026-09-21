@@ -26,7 +26,7 @@ public class SecopDocumentClient {
 
     private static final Logger log = LoggerFactory.getLogger(SecopDocumentClient.class);
     private static final Pattern FILENAME = Pattern.compile("filename\\*?=(?:UTF-8''|\"?)([^\";]+)", Pattern.CASE_INSENSITIVE);
-    static final int MAX_BYTES = 50 * 1024 * 1024;
+    public static final int MAX_BYTES = 50 * 1024 * 1024;
 
     private final RestClient restClient;
 
