@@ -34,7 +34,9 @@ class ProcessMatchScorerTest {
                 80,
                 200,
                 20,
-                List.of("Policía", "Ejército", "ICBF", "Armada", "Fuerza Aeroespacial", "Ministerio de Defensa", "INPEC", "SENA")
+                List.of("Policía", "Ejército", "ICBF", "Armada", "Fuerza Aeroespacial", "Ministerio de Defensa", "INPEC", "SENA"),
+                "src/main/resources/estudios-previos",
+                "https://www.datos.gov.co/resource/dmgg-8hin.json"
         );
         scorer = new ProcessMatchScorer(CLOCK, properties);
         profile = sampleProfile();

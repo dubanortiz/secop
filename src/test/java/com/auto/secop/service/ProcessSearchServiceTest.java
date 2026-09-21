@@ -42,7 +42,9 @@ class ProcessSearchServiceTest {
                 80,
                 200,
                 20,
-                List.of("Policía", "SENA", "ICBF")
+                List.of("Policía", "SENA", "ICBF"),
+                "src/main/resources/estudios-previos",
+                "https://www.datos.gov.co/resource/dmgg-8hin.json"
         );
         ProcessMatchScorer scorer = new ProcessMatchScorer(CLOCK, properties);
         service = new ProcessSearchService(client, scorer, sampleProfile(), properties);
