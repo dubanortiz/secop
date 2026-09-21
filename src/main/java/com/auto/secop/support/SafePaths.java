@@ -66,6 +66,20 @@ public final class SafePaths {
         return name.endsWith(".pdf");
     }
 
+    public static boolean looksLikePdf(Path file) {
+        return file != null && looksLikePdf(file.getFileName().toString(), null);
+    }
+
+    /**
+     * {@code ESTUDIO PREVIO.pdf} → {@code ESTUDIO PREVIO.txt} in the same folder.
+     */
+    public static Path textSidecar(Path pdf) {
+        String name = pdf.getFileName().toString();
+        int dot = name.lastIndexOf('.');
+        String base = dot > 0 ? name.substring(0, dot) : name;
+        return pdf.resolveSibling(base + ".txt");
+    }
+
     public static boolean looksLikeZip(String fileName, String extension) {
         String ext = extension == null ? "" : extension.toLowerCase(Locale.ROOT).trim();
         if (ext.equals("zip")) {

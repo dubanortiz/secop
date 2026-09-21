@@ -54,6 +54,37 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<!-- Tess4J wraps Tesseract; native lib + spa traineddata are optional at runtime. -->
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>tess4j</artifactId>
+			<version>5.19.0</version>
+			<exclusions>
+				<!-- App uses PDFBox 3 for text + page rasterization; Tess4J still OCRs images. -->
+				<exclusion>
+					<groupId>org.apache.pdfbox</groupId>
+					<artifactId>pdfbox</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.pdfbox</groupId>
+					<artifactId>fontbox</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.pdfbox</groupId>
+					<artifactId>pdfbox-tools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.pdfbox</groupId>
+					<artifactId>jbig2-imageio</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>

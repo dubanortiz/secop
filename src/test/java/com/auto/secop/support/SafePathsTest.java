@@ -2,6 +2,8 @@ package com.auto.secop.support;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SafePathsTest {
@@ -13,6 +15,14 @@ class SafePathsTest {
         assertThat(SafePaths.processFolder("MC/055 DISAN")).isEqualTo("MC-055-DISAN");
         assertThat(SafePaths.processFolder("../etc/passwd")).isEqualTo("etc-passwd");
         assertThat(SafePaths.processFolder("")).isEqualTo("sin-numero");
+    }
+
+    @Test
+    void textSidecarReplacesPdfExtension() {
+        Path pdf = Path.of("src/main/resources/estudios-previos/MC-2026-047/ESTUDIO PREVIO.pdf");
+        assertThat(SafePaths.textSidecar(pdf))
+                .isEqualTo(Path.of("src/main/resources/estudios-previos/MC-2026-047/ESTUDIO PREVIO.txt"));
+        assertThat(SafePaths.looksLikePdf(pdf)).isTrue();
     }
 
     @Test

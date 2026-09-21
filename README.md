@@ -8,6 +8,12 @@ It queries the public [datos.gov.co](https://www.datos.gov.co/resource/p6dx-8zbt
 
 - Java 21
 - Maven Wrapper (`./mvnw`)
+- **Tesseract OCR** (optional): only needed for **scanned / image-only** Estudio Previo PDFs. Native text extraction uses Apache PDFBox and works without Tesseract. Install the engine plus Spanish traineddata (English is used as a fallback language when present):
+  - Debian/Ubuntu: `sudo apt-get install -y tesseract-ocr tesseract-ocr-spa tesseract-ocr-eng`
+  - macOS: `brew install tesseract tesseract-lang`
+  - Confirm: `tesseract --list-langs` includes `spa` (and ideally `eng`). Set `TESSDATA_PREFIX` if traineddata is not in a default path.
+
+There are **no paid OCR APIs**. OCR is local (Tess4J wrapping `libtesseract`, or the `tesseract` CLI).
 
 ## Run
 
@@ -90,9 +96,9 @@ Missing budget or closing date is scored conservatively. Processes below `minMat
 - `secop.parametria-path` — parametría JSON on the classpath
 - `secop.default-min-match` — default `minMatch`
 - `secop.national-entities` — extra entity stems used in the OR territory filter
-- `secop.estudios-previos-dir` — writable directory for downloaded Estudio Previo files. **Default:** `src/main/resources/estudios-previos` (the layout used with local `spring-boot:run`). A packaged JAR cannot write into the classpath; production must set an **absolute writable path**.
+- `secop.estudios-previos-dir` — writable directory for downloaded Estudio Previo PDFs **and** extracted `.txt` sidecars. **Default:** `src/main/resources/estudios-previos` (the layout used with local `spring-boot:run`). A packaged JAR cannot write into the classpath; production must set an **absolute writable path**.
 
-No API tokens or secrets are required for the public datasets.
+No API tokens or secrets are required for the public datasets. OCR never calls an external paid API.
 
 ## Download Estudio Previo
 
@@ -140,8 +146,67 @@ Example response:
 ]
 ```
 
+## Extract Estudio Previo text
+
+`POST /api/v1/processes/estudios-previos/extract`
+
+Request body: the **same JSON as download** (search-result array or `{ "processes": [ ... ] }`). A shortcut list of process numbers (or folder paths under `estudios-previos`) is also accepted: `["MC-2026-047"]` or `{ "processNumbers": ["MC-2026-047"] }`.
+
+For each process the service reads PDFs already stored as `estudios-previos/<sanitized-processNumber>/` (paso 2 download). It does **not** download from SECOP.
+
+1. **Native text** with Apache PDFBox.
+2. If the PDF is empty / near-empty (scanned), **OCR**: rasterize pages with PDFBox, then Tess4J or `tesseract` (`spa+eng` when English traineddata is present, otherwise `spa`).
+3. Write a sidecar `.txt` next to the PDF, e.g. `ESTUDIO PREVIO.pdf` → `ESTUDIO PREVIO.txt`.
+
+Per-process statuses: `EXTRACTED`, `MISSING_PDF` (no PDF on disk — run download first; **no invented content**), `ERROR` (unreadable PDF, or scanned PDF while Tesseract is not installed). One failure does not fail the rest of the batch.
+
+Example (search → download → extract):
+
+```bash
+curl -s 'http://localhost:8080/api/v1/processes/search?minMatch=80&departamento=Caquetá&limit=5' \
+  | tee /tmp/secop-matches.json \
+  | curl -s -X POST 'http://localhost:8080/api/v1/processes/estudios-previos/download' \
+      -H 'Content-Type: application/json' \
+      -d @-
+
+curl -s -X POST 'http://localhost:8080/api/v1/processes/estudios-previos/extract' \
+  -H 'Content-Type: application/json' \
+  --data-binary @/tmp/secop-matches.json
+```
+
+Extract from process numbers already on disk:
+
+```bash
+curl -s -X POST 'http://localhost:8080/api/v1/processes/estudios-previos/extract' \
+  -H 'Content-Type: application/json' \
+  -d '["MC-055-DISAN-EJC-2026"]'
+```
+
+Example response:
+
+```json
+[
+  {
+    "processNumber": "MC-055-DISAN-EJC-2026",
+    "status": "EXTRACTED",
+    "files": [
+      {
+        "pdf": "src/main/resources/estudios-previos/MC-055-DISAN-EJC-2026/ESTUDIO PREVIO MOLECULARES 2026.pdf",
+        "textFile": "src/main/resources/estudios-previos/MC-055-DISAN-EJC-2026/ESTUDIO PREVIO MOLECULARES 2026.txt",
+        "method": "text",
+        "chars": 18420
+      }
+    ]
+  }
+]
+```
+
+`method` is `"text"` (embedded PDF text) or `"ocr"` (Tesseract). Downloaded PDFs and extracted `.txt` files are gitignored; `.gitkeep` keeps the folder.
+
 ## Tests
 
 ```bash
 ./mvnw -q test
 ```
+
+Unit tests cover native-text PDFs, the OCR path with a **mocked** engine (CI does **not** need Tesseract), and `MISSING_PDF`. An optional integration test runs OCR against a real Tesseract install when `spa` traineddata is present (`@EnabledIf`).
