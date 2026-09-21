@@ -85,12 +85,60 @@ Missing budget or closing date is scored conservatively. Processes below `minMat
 
 `src/main/resources/application.properties`:
 
-- `secop.datos-gov-base-url` — SODA resource URL
+- `secop.datos-gov-base-url` — SODA resource URL (dataset `p6dx-8zbt`)
+- `secop.archivos-gov-base-url` — SODA resource for SECOP II attachments (dataset `dmgg-8hin`)
 - `secop.parametria-path` — parametría JSON on the classpath
 - `secop.default-min-match` — default `minMatch`
 - `secop.national-entities` — extra entity stems used in the OR territory filter
+- `secop.estudios-previos-dir` — writable directory for downloaded Estudio Previo files. **Default:** `src/main/resources/estudios-previos` (the layout used with local `spring-boot:run`). A packaged JAR cannot write into the classpath; production must set an **absolute writable path**.
 
-No API tokens or secrets are required for the public dataset.
+No API tokens or secrets are required for the public datasets.
+
+## Download Estudio Previo
+
+`POST /api/v1/processes/estudios-previos/download`
+
+Request body: the JSON **array** returned by search (`ProcessMatchResponse`). A wrapper `{ "processes": [ ... ] }` is also accepted.
+
+For each item the service:
+
+1. Looks up `id_del_portafolio` (`CO1.BDOS.*`) on datos.gov.co `p6dx-8zbt` using `processNumber` (then the exact OpportunityDetail `url`).
+2. Lists attachments on datos.gov.co `dmgg-8hin` for that portfolio.
+3. Selects **Estudio Previo PDFs** (names containing `ESTUDIO PREVIO` / `Estudio Previo` / `ESTUDIOS PREVIOS`). Invitacion ZIPs are only used when no dedicated PDF is listed; inner Estudio Previo PDFs are extracted.
+4. Downloads binaries from the public `RetrieveFile` URL (no SECOP login). OpportunityDetail HTML is behind reCAPTCHA and is **not** scraped.
+
+Per-process statuses: `DOWNLOADED`, `SKIPPED` (same filename already on disk — **not overwritten**), `NOT_FOUND`, `BLOCKED` (reCAPTCHA/login page instead of a PDF), `ERROR`. One blocked item does not fail the rest of the batch. No fake PDFs are written.
+
+Files are stored as `estudios-previos/<sanitized-processNumber>/`, e.g. `src/main/resources/estudios-previos/MC-2026-047/ESTUDIO PREVIO.pdf`. Downloaded binaries are gitignored; `.gitkeep` keeps the folder.
+
+This endpoint is **read-only**. It does not apply to tenders, submit offers, or mutate SECOP.
+
+Example (search → pipe into download):
+
+```bash
+curl -s 'http://localhost:8080/api/v1/processes/search?minMatch=80&departamento=Caquetá&limit=5' \
+  | curl -s -X POST 'http://localhost:8080/api/v1/processes/estudios-previos/download' \
+      -H 'Content-Type: application/json' \
+      -d @-
+```
+
+Example response:
+
+```json
+[
+  {
+    "processNumber": "MC-055-DISAN-EJC-2026",
+    "status": "DOWNLOADED",
+    "files": [
+      {
+        "fileName": "ESTUDIO PREVIO MOLECULARES 2026.pdf",
+        "path": "src/main/resources/estudios-previos/MC-055-DISAN-EJC-2026/ESTUDIO PREVIO MOLECULARES 2026.pdf",
+        "sizeBytes": 6152753
+      }
+    ]
+  }
+]
+```
 
 ## Tests
 

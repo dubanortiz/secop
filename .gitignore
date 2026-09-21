@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Downloaded SECOP Estudio Previo binaries (keep folder structure) ###
+src/main/resources/estudios-previos/**
+!src/main/resources/estudios-previos/.gitkeep
+!src/main/resources/estudios-previos/**/.gitkeep
