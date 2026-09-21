@@ -189,10 +189,6 @@ public class TesseractPdfOcrEngine implements PdfOcrEngine {
         }
     }
 
-    static boolean tesseractOnPath() {
-        return cliWorks();
-    }
-
     public static boolean tesseractWithSpanishData() {
         if (tessdataDir() != null) {
             return true;

@@ -39,16 +39,7 @@ class EstudioPrevioExtractServiceTest {
     @BeforeEach
     void setUp() {
         ocrEngine = mock(PdfOcrEngine.class);
-        SecopProperties properties = new SecopProperties(
-                "https://www.datos.gov.co/resource/p6dx-8zbt.json",
-                "classpath:parametria/parametria-ofertas.json",
-                80,
-                200,
-                20,
-                List.of(),
-                tempDir.toString(),
-                "https://www.datos.gov.co/resource/dmgg-8hin.json"
-        );
+        SecopProperties properties = propertiesFor(tempDir);
         service = new EstudioPrevioExtractService(
                 properties,
                 new PdfNativeTextExtractor(),
@@ -82,22 +73,24 @@ class EstudioPrevioExtractServiceTest {
     void imageOnlyPdfTriggersOcrAndWritesSidecar() throws Exception {
         Path pdf = tempDir.resolve(PROCESS_NUMBER).resolve("Estudio_Previo.pdf");
         EstudioPrevioPdfFixtures.writeImageOnlyPdf(pdf);
-        given(ocrEngine.available()).willReturn(true);
-        given(ocrEngine.recognize(anyList())).willAnswer(invocation -> {
-            List<BufferedImage> pages = invocation.getArgument(0);
-            assertThat(pages).isNotEmpty();
-            return "Texto OCR del estudio previo de contratacion";
-        });
+        RecordingOcrEngine recording = new RecordingOcrEngine(
+                "Texto OCR del estudio previo de contratacion para suministro de uniformes deportivos");
+        service = new EstudioPrevioExtractService(
+                propertiesFor(tempDir),
+                new PdfNativeTextExtractor(),
+                new PdfPageRenderer(),
+                recording
+        );
 
         EstudioPrevioExtractResult result = service.extract(List.of(match())).getFirst();
 
-        assertThat(result.status()).isEqualTo(EstudioPrevioExtractStatus.EXTRACTED);
+        assertThat(result.status()).as(result.error()).isEqualTo(EstudioPrevioExtractStatus.EXTRACTED);
         assertThat(result.files().getFirst().method()).isEqualTo(EstudioPrevioExtractMethod.OCR);
         Path textFile = tempDir.resolve(PROCESS_NUMBER).resolve("Estudio_Previo.txt");
         assertThat(Files.readString(textFile, StandardCharsets.UTF_8))
-                .contains("Texto OCR del estudio previo de contratacion");
+                .contains("Texto OCR del estudio previo de contratacion para suministro");
         assertThat(result.files().getFirst().chars()).isGreaterThan(0);
-        verify(ocrEngine).recognize(anyList());
+        assertThat(recording.pagesSeen).isNotEmpty();
     }
 
     @Test
@@ -137,5 +130,38 @@ class EstudioPrevioExtractServiceTest {
     private static ProcessMatchResponse match() {
         return new ProcessMatchResponse(PROCESS_NUMBER, 90, "E", "O", "Mínima cuantía", 1L, "2026-09-22",
                 "https://community.secop.gov.co/x");
+    }
+
+    private static SecopProperties propertiesFor(Path dir) {
+        return new SecopProperties(
+                "https://www.datos.gov.co/resource/p6dx-8zbt.json",
+                "classpath:parametria/parametria-ofertas.json",
+                80,
+                200,
+                20,
+                List.of(),
+                dir.toString(),
+                "https://www.datos.gov.co/resource/dmgg-8hin.json"
+        );
+    }
+
+    private static final class RecordingOcrEngine implements PdfOcrEngine {
+        private final String text;
+        private List<BufferedImage> pagesSeen = List.of();
+
+        private RecordingOcrEngine(String text) {
+            this.text = text;
+        }
+
+        @Override
+        public boolean available() {
+            return true;
+        }
+
+        @Override
+        public String recognize(List<BufferedImage> pages) {
+            this.pagesSeen = pages;
+            return text;
+        }
     }
 }
